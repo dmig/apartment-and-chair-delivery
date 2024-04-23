@@ -18,7 +18,6 @@ def load_map(fh):
     '''
     line: str
     for y, line in enumerate(fh):
-        n = 1
         st = 0
         while (st := line.find('(', st)) > -1 and (en := line.find(')', st)) > -1:
             # extract room name and keep its position for later
@@ -27,10 +26,13 @@ def load_map(fh):
             # replace room name with whitespace
             line = line[:st] + (' ' * l) + line[en + 1:]
 
+            n = 1
+            postfix = ''
             # handle duplicate room names properly
-            while room_name in room_data:
-                room_name += ' ' + str(n)
+            while room_name + postfix in room_data:
+                postfix = ' ' + str(n)
                 n += 1
+            room_name = room_name + postfix
 
             # save old name location as starting point
             room_data[room_name] = (st, y)

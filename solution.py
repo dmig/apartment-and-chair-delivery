@@ -16,6 +16,10 @@ def load_map(fh):
     get room names and
     initialize room scan starting points
     '''
+    # these are solely to make tests pass
+    the_map.clear()
+    room_data.clear()
+
     line: str
     for y, line in enumerate(fh):
         st = 0

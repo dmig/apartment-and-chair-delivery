@@ -130,17 +130,22 @@ x - enqued points
 3. Multiple names of one room: all will appear in the output, all but first one (top- and leftmost on the map) will have zero counters
 4. Duplicate room names will be numbered, starting from second occurence: _The Room_, _The Room 1_, _The Room 2_, e.t.c.
 5. Rooms without names will not be scanned
-6. Passage between walls must be at least 1 character wide:
+6. Room names cannot contain `)` character, must be enclosed between `(` and `)`
+7. Any other characters besides `WALLS` and `CHAIRS` definitions will be ignored.
+8. Empty lines in the map file will act as walls, so there shouldn't be any.
+9. Passage between walls and corners must be at least 1 character wide:
 ```
 Not passages:
-..   ..   ·--·
-||   \\   ·--·
-··    ··
+..   ..   ·--·      |
+||   \\   ·--·  ·--+
+··    ··           +--·
+                  |
 
 Valid passages:
-. .   . .   ·--·
-| |   \ \
-· ·    · ·  ·--·
+. .   . .   ·--·    |
+| |   \ \       ·--+
+· ·    · ·  ·--·      +---·
+                     |
 ```
 ### Complexity
 Solution time complexity is $O(M * N)$, where _M_ and _N_ are map dimensions. This is a worst case scenario, usually it will be less.

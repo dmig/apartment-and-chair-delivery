@@ -53,7 +53,7 @@ def scan_room(st: Point) -> dict[str, int]:
 
         line_above = the_map[y - 1] if y > 0 else b''
         line_current = the_map[y]
-        line_below = the_map[y + 1] if y < len(the_map) else b''
+        line_below = the_map[y + 1] if y < len(the_map) - 1 else b''
         lla = len(line_above)
         llb = len(line_below)
 
